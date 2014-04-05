@@ -1,4 +1,4 @@
 UrlShortener
 ============
 
-An URL shortener with Java web technology
+An URL shortener written in Java.
