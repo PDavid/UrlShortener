@@ -1,7 +1,7 @@
 package hu.example.urlshortener.test;
 
-import hu.example.urlshortener.persistence.PersistenceProvider;
-import hu.example.urlshortener.persistence.PersistenceProviderMap;
+import hu.example.urlshortener.persistence.PersistenceService;
+import hu.example.urlshortener.persistence.MemoryPersistenceService;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,16 +10,16 @@ import org.junit.Test;
  *
  * @author paksyd
  */
-public class PersistenceProviderMapTest {
+public class MemoryPersistenceServiceTest {
 
-    private static PersistenceProvider persistenceProvider;
+    private static PersistenceService persistenceProvider;
 
-    public PersistenceProviderMapTest() {
+    public MemoryPersistenceServiceTest() {
     }
 
     @BeforeClass
     public static void setUpClass() {
-        persistenceProvider = PersistenceProviderMap.getInstance();
+        persistenceProvider = MemoryPersistenceService.getInstance();
     }
 
     @Test

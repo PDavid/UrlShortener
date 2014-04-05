@@ -1,7 +1,7 @@
 package hu.example.urlshortener;
 
-import hu.example.urlshortener.persistence.PersistenceProvider;
-import hu.example.urlshortener.persistence.PersistenceProviderMap;
+import hu.example.urlshortener.persistence.PersistenceService;
+import hu.example.urlshortener.persistence.MemoryPersistenceService;
 import hu.example.urlshortener.util.MD5;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -22,7 +22,7 @@ public class UrlShortener {
         String shortCode = MD5.hashString(url).substring(0, 6);
 
         // TODO: handle collisions!
-        PersistenceProvider persistenceProvider = PersistenceProviderMap.getInstance();
+        PersistenceService persistenceProvider = MemoryPersistenceService.getInstance();
         persistenceProvider.persist(shortCode, url);
 
         LOGGER.log(Level.INFO, "Created shortcode: {0}", shortCode);
@@ -33,7 +33,7 @@ public class UrlShortener {
     public static String getUrlForShortCode(String shortCode) {
         LOGGER.log(Level.INFO, "Getting url for shortcode: {0}", shortCode);
 
-        PersistenceProvider persistenceProvider = PersistenceProviderMap.getInstance();
+        PersistenceService persistenceProvider = MemoryPersistenceService.getInstance();
         String url = persistenceProvider.getUrl(shortCode);
 
         LOGGER.log(Level.INFO, "Url for shortcode is: {0}", url);

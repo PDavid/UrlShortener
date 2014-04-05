@@ -9,21 +9,21 @@ import java.util.logging.Logger;
  *
  * @author paksyd
  */
-public class PersistenceProviderMap implements PersistenceProvider {
+public class MemoryPersistenceService implements PersistenceService {
 
-    private static final Logger LOGGER = Logger.getLogger(PersistenceProviderMap.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MemoryPersistenceService.class.getName());
 
-    private static PersistenceProviderMap instance;
+    private static MemoryPersistenceService instance;
 
     private final Map<String, String> map;
 
-    private PersistenceProviderMap() {
+    private MemoryPersistenceService() {
         map = new HashMap<>();
     }
 
-    public static PersistenceProviderMap getInstance() {
+    public static MemoryPersistenceService getInstance() {
         if (instance == null) {
-            instance = new PersistenceProviderMap();
+            instance = new MemoryPersistenceService();
         }
         return instance;
     }
