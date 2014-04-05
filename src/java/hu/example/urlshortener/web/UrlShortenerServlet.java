@@ -23,8 +23,11 @@ public class UrlShortenerServlet extends HttpServlet {
     private static String URL_BASE;
 
     private static final String PATH_CREATE = "/shorten";
-    private static final String PATH_RESULT = "/result";
     private static final String PATH_REDIRECT = "/r";
+    
+    private static final String PAGE_INDEX = "index.jsp";
+    
+    private static final String REQUEST_ATTRIBUTE_SHORT_URL = "shortUrl";
 
     private static final String PARAM_URL = "url";
 
@@ -54,7 +57,7 @@ public class UrlShortenerServlet extends HttpServlet {
     }
 
     private void shortenUrl(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws IOException, ServletException {
 
         String url = request.getParameter(PARAM_URL);
         if (url == null || url.isEmpty()) {
@@ -62,14 +65,15 @@ public class UrlShortenerServlet extends HttpServlet {
             sendRedirect(request, response, PATH_CREATE);
             return;
         }
+        request.setAttribute(PARAM_URL, url);
 
         try {
             String shortCode = UrlShortener.createShortCodeForUrl(url);
             String shortUrl = URL_BASE + shortCode;
 
-            request.setAttribute("result", shortUrl);
+            request.setAttribute(REQUEST_ATTRIBUTE_SHORT_URL, shortUrl);
 
-            sendRedirect(request, response, PATH_RESULT);
+            request.getRequestDispatcher(PAGE_INDEX).forward(request, response);
 
         } catch (NoSuchAlgorithmException ex) {
             LOGGER.log(Level.SEVERE, "Error while tried to short the url.", ex);
@@ -106,7 +110,7 @@ public class UrlShortenerServlet extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         } catch (ServletException | IOException ex) {
             LOGGER.log(Level.SEVERE,
-                    "Could not redirect to url: {0}", url);
+                    "Could not redirect to url: " + url, ex);
         }
     }
 

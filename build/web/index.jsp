@@ -17,9 +17,23 @@
                name="url" 
                id="url" 
                class="form-control urlfield" 
-               placeholder="Paste a link to shorten it"/>
-        
+               placeholder="Paste a link to shorten it"
+               value="${url}"/>
+
         <button type="submit" class="btn btn-primary">Shorten</button>
     </div>
 </form>
 
+<p></p>
+
+<c:if test="${not empty shortUrl}">
+
+    <p>
+        Your shortened url is ready: <br/>
+
+        <a href="${shortUrl}">
+            <c:out value="${shortUrl}"/>
+        </a>
+    </p>
+
+</c:if>
