@@ -9,8 +9,9 @@
         
         <title>URL Shortener</title>
         
-        <!--<link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>-->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>
+        
+        <link rel="stylesheet" href="css/main.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -18,8 +19,8 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         
-        <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png"/>-->
-        <!--<link rel="shortcut icon" href="images/favicon.ico"/>-->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png"/>
+        <link rel="shortcut icon" href="images/favicon.ico"/>
     </head>
     <body>
         <div class="container">

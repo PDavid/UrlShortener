@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author paksyd
  */
-@WebServlet(name = "UrlShortenerServlet", urlPatterns = {"/", "/shorten"})
+@WebServlet(name = "UrlShortenerServlet", urlPatterns = {"/r/*", "/shorten"})
 public class UrlShortenerServlet extends HttpServlet {
     
     private static final Logger LOGGER = Logger.getLogger(UrlShortenerServlet.class.getName());
@@ -24,6 +24,7 @@ public class UrlShortenerServlet extends HttpServlet {
 
     private static final String PATH_CREATE = "/shorten";
     private static final String PATH_RESULT = "/result";
+    private static final String PATH_REDIRECT = "/r";
 
     private static final String PARAM_URL = "url";
 
@@ -46,7 +47,7 @@ public class UrlShortenerServlet extends HttpServlet {
             case PATH_CREATE:
                 shortenUrl(request, response);
                 break;
-            default:
+            case PATH_REDIRECT:
                 serveUrl(request, response);
                 break;
         }
@@ -78,7 +79,7 @@ public class UrlShortenerServlet extends HttpServlet {
     private void serveUrl(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        String shortCode = request.getServletPath();
+        String shortCode = request.getPathInfo();
         shortCode = shortCode.replaceAll("/", "");
 
         if (shortCode == null || shortCode.isEmpty()) {
@@ -113,10 +114,15 @@ public class UrlShortenerServlet extends HttpServlet {
         if (URL_BASE == null) {
             String requestURL = request.getRequestURL().toString();
             String servletPath = request.getServletPath();
+            
+            LOGGER.log(Level.INFO, 
+                "requestURL: ''{0}''", requestURL);
+            LOGGER.log(Level.INFO, 
+                "servletPath: ''{0}''", servletPath);
 
             requestURL = requestURL.replaceAll(servletPath, "");
 
-            URL_BASE = requestURL + "/";
+            URL_BASE = requestURL + PATH_REDIRECT + "/";
 
             LOGGER.log(Level.INFO, 
                 "URL_BASE initialized: ''{0}''", URL_BASE);
