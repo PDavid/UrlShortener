@@ -1,7 +1,7 @@
 package hu.example.urlshortener.persistence;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +18,7 @@ public class MemoryPersistenceService implements PersistenceService {
     private final Map<String, String> map;
 
     private MemoryPersistenceService() {
-        map = new HashMap<>();
+        map = new ConcurrentHashMap<>();
     }
 
     public static MemoryPersistenceService getInstance() {

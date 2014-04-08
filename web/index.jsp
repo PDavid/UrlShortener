@@ -18,7 +18,8 @@
                id="url" 
                class="form-control urlfield" 
                placeholder="Paste a link to shorten it"
-               value="${url}"/>
+               value="${url}"
+               style="width: 400px;"/>
 
         <button type="submit" class="btn btn-primary">Shorten</button>
     </div>
