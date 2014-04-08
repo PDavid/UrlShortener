@@ -29,7 +29,7 @@
 
 <c:if test="${not empty shortUrl}">
 
-    <p>
+    <p class="alert alert-success">
         Your shortened url is ready: <br/>
 
         <a href="${shortUrl}">
