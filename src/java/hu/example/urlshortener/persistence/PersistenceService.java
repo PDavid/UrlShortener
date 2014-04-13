@@ -7,7 +7,7 @@ package hu.example.urlshortener.persistence;
  */
 public interface PersistenceService {
 
-    public void persist(String shortCode, String url);
+    void persist(String shortCode, String url);
 
-    public String getUrl(String shortCode);
+    String getUrl(String shortCode);
 }
