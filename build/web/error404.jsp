@@ -8,4 +8,7 @@
 
 <h1>404</h1>
 
-Oh-oh could now find what you looking for.
+<p>
+Oh-oh could not find what you are looking for.
+</p>
+<a href="./index.jsp">Go back to the home page.</a>
